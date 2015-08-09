@@ -1,4 +1,4 @@
-Flask==0.10.1
-gunicorn==18.0
-pymongo==2.6.3
+Flask
+gunicorn
+pymongo
 
