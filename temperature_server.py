@@ -11,7 +11,7 @@ smartDB = SmartHomeDB()
 
 @app.route('/')
 def index():
-	records = smartDB.getCurrentStats()
+	records = smartDB.getCurrentStats('raspberry')
 	print(records)
 	return json.dumps(records)
 
