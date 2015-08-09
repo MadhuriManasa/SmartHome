@@ -28,7 +28,7 @@ def update_stats():
 	smartDB.updateCurrentStats(recordJson)
 	return 'Success', 200
 
-@app.route('get_current_stats',methods=['GET'])
+@app.route('/get_current_stats',methods=['GET'])
 def get_current_stats():
 	record = smartDB.getCurrentStats()
 	return json.dumps(record)
