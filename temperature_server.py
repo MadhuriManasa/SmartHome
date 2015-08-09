@@ -11,7 +11,7 @@ smartDB = SmartHomeDB()
 
 @app.route('/')
 def index():
-	records = smartDB.getTemperaturePoints()
+	records = smartDB.getCurrentStats()
 	print(records)
 	return json.dumps(records)
 
