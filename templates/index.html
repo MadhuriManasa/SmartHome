@@ -5,3 +5,5 @@
 <h2>Temperature: {{ records.cur_temperature}}</h2>
 <h2>Humidity: {{ records.cur_humidity}}</h2>
 {% endif %}
+{% if records.timestamp_string %}
+<h2>Last Recorded Time: {{ records.timestamp_string }}</h2>
