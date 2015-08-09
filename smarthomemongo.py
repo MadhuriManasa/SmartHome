@@ -74,7 +74,7 @@ class SmartHomeDB:
 		self.cur_stats.update({"device_name":{"$eq":stats['device_name']}}, record,upsert=True)
 
 	def getCurrentStats(self,device_name):
-		record = self.cur_stats.find_one({"device_name":{"$eq":device_name}},{'cur_temperature':1,'cur_humidity':1,'device_name':1,'_id':0})
+		record = self.cur_stats.find_one({"device_name":{"$eq":device_name}},{ 'timestamp':1, 'cur_temperature':1,'cur_humidity':1,'device_name':1,'_id':0})
 		if record is not None:
 			return dict(record)
 		
