@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, request
+from flask import Flask, request, render_template
 import os
 import json
 import time
@@ -13,7 +13,7 @@ smartDB = SmartHomeDB()
 def index():
 	records = smartDB.getCurrentStats('raspberry')
 	print(records)
-	return json.dumps(records)
+	return render_template('index.html',records=records)
 
 
 @app.route('/add', methods=['POST'])
