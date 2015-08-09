@@ -13,7 +13,7 @@ smartDB = SmartHomeDB()
 @app.route('/')
 def index():
 	records = smartDB.getCurrentStats('raspberry')
-	if( 'timestamp' in records ):
+	if( 'timestamp' in records.keys() ):
 		ts = datetime.datetime.fromtimestamp(records['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
 		records['timestamp_string'] = ts
 	print(records)
