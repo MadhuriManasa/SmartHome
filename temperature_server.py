@@ -25,7 +25,6 @@ def add():
 @app.route('/update_stats', methods=['POST'])
 def update_stats():
 	recordJson = request.get_json()
-	print(recordJson)
 	smartDB.updateCurrentStats(recordJson)
 	return 'Success', 200
 
