@@ -39,9 +39,9 @@ def upload_current_stats():
 		'cur_humidity' : points[1],
 		'device_name' :DEVICE_NAME,
 		'timestamp' : long(time.time())
-		}=
+		}
 		conn = httplib.HTTPConnection(URL)
-		con.request("POST",'/update_stats',json.dumps(record),{'Content-Type':'application/json'})
+		conn.request("POST",'/update_stats',json.dumps(record),{'Content-Type':'application/json'})
 		response = conn.getresponse()
 		print response.status, response.reason
 		conn.close()
@@ -50,10 +50,11 @@ def upload_current_stats():
 
 if __name__=='__main__':
 
-	operation = sys.argv[0]
+	operation = sys.argv[1]
+	print(operation)
 	if( operation=='add_reading'):
 		upload_temp()
-	else if( operation == 'cur_reading'):
+	elif( operation == 'cur_reading'):
 		upload_current_stats()
 		
 
