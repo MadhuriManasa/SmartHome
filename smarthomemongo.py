@@ -47,7 +47,8 @@ class SmartHomeDB:
 	def __init__(self):
 		self.client = client = MongoClient(mongolab_uri,
                      connectTimeoutMS=30000,
-                     socketTimeoutMS=None)
+                     socketTimeoutMS=None
+                     socketKeepAlive=True)
 		self.db = client.get_default_database()
 		self.temperature_collection = self.db['temperature']
 
