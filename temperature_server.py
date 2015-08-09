@@ -15,6 +15,10 @@ def index():
 	print(records)
 	return json.dumps(records)
 
+@app.route('/hello')
+def hello():
+	return 'Hello World'
+
 @app.route('/add', methods=['POST'])
 def add():
 	recordJson = request.get_json()
