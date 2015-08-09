@@ -19,6 +19,7 @@ def index():
 @app.route('/add', methods=['POST'])
 def add():
 	recordJson = request.get_json()
+	print(recordJson)
 	smartDB.insertTemperaturePoint(recordJson)
 	return 'Success', 200
 
