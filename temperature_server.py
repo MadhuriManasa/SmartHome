@@ -19,9 +19,20 @@ def index():
 @app.route('/add', methods=['POST'])
 def add():
 	recordJson = request.get_json()
-	print(recordJson)
 	smartDB.insertTemperaturePoint(recordJson)
 	return 'Success', 200
+
+@app.route('/update_stats', methods=['POST'])
+def update_stats():
+	recordJson = request.get_jsom()
+	smartDB.updateCurrentStats(recordJson)
+	return 'Success', 200
+
+@app.route('get_current_stats',methods=['GET'])
+def get_current_stats():
+	record = smartDB.getCurrentStats()
+	return json.dumps(record)
+
 
 
 if __name__ == '__main__':
