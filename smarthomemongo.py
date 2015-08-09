@@ -51,6 +51,7 @@ class SmartHomeDB:
                      socketKeepAlive=True)
 		self.db = client.get_default_database()
 		self.temperature_collection = self.db['temperature']
+		self.cur_stats=self.db['smart_home_stats']
 
 	def getTemperaturePoints(self):
 		record = self.temperature_collection.find({},{'temperature':1,'humidity':1,'device_name':1,'_id':0})
@@ -63,6 +64,31 @@ class SmartHomeDB:
 		record['timestamp'] = tempData['timestamp']
 		record['device_name'] = tempData['device_name']
 		self.temperature_collection.insert_one(record)
+
+	def updateCurrentStats(self,stats):
+		record = {}
+		record['cur_temperature'] = stats['cur_temperature']
+		record['cur_humidity'] = stats['cur_humidity']
+		record['device_name'] = stats['device_name']
+		record['timestamp'] = stats['timestamp']
+		self.cur_stats.update({"device_name":{"$eq":stats['device_name']}}, record,upsert=True)
+
+	def getCurrentStats(self,device_name):
+		record = self.cur_stats.find_one({"device_name":{"$eq":device_name}},{'cur_temperature':1,'cur_humidity':1,'device_name':1,'_id':0})
+		if record is not None:
+			return dict(record)
+		
+		return dict()
+
+
+def run_tests():
+	smartDB = SmartHomeDB()
+	smartDB.updateCurrentStats({'cur_temperature':12.0,'cur_humidity':23.0,'device_name':'raspberrypi','timestamp':123})
+	record = smartDB.getCurrentStats('raspberrypi')
+	print(record)
+
+if __name__=='__main__':
+	run_tests()
 
 
 
