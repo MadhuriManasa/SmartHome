@@ -1,4 +1,4 @@
-from Adafruit_Python_DHT  import Adafruit_DHT
+import Adafruit_DHT
 import time
 import json
 import httplib
