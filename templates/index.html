@@ -2,5 +2,6 @@
 <title>BB's Smart Home</title>
 <h1> Welcome to BB's Smart Home </h1>
 {% if records %}
-<h2>Current Temperature: {{ records.cur_temperature}}</h2>
+<h2>Temperature: {{ records.cur_temperature}}</h2>
+<h2>Humidity: {{ records.cur_humidity}}</h2>
 {% endif %}
