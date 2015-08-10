@@ -4,6 +4,7 @@
 # Distributed under the MIT license - http://opensource.org/licenses/MIT
 
 from pymongo import MongoClient  # pymongo>=3.0
+import os
 
 """
 PyMongo Production Connection Example
