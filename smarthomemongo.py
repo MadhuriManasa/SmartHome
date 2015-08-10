@@ -24,7 +24,8 @@ environment variables.
 #
 # If you are using a PaaS add-on integration e.g. via Heroku, the URI is usually available via an environment variable, often
 # named "MONGOLAB_URI". Consult the documentation for the add-on you are using.
-mongolab_uri = "mongodb://bharath2020:bharathmongo@ds031223.mongolab.com:31223/heroku_9g9jq5mx"
+mongolab_uri = os.environ['MONGOLAB_URI']
+
 
 # Pass the following keyword arguments to ensure proper production behavior:
 #
