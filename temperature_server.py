@@ -38,6 +38,9 @@ def get_current_stats():
 	record = smartDB.getCurrentStats()
 	return json.dumps(record)
 
+@app.route('/line_graph')
+def get_line_graph():
+	return render_template('graph.html')
 
 
 if __name__ == '__main__':
