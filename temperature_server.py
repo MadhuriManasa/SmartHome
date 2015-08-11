@@ -42,6 +42,11 @@ def get_current_stats():
 def get_line_graph():
 	return render_template('graph.html')
 
+@app.route('/data.csv')
+def get_data_csv():
+	records = smartDB.getTemperaturePoints()
+	return json.dumps(records)
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)
