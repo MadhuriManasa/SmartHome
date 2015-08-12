@@ -82,7 +82,7 @@ class SmartHomeDB:
 			record_info = dict(record)
 			print record_info
 			temp = record_info['temperature']
-			tempstr = '{0:.2f}'.format(temp)
+			tempstr = format(temp,'.2f')
 			print(tempstr)
 			# try:
 			# 	record_info['temperature'] = format(float(record_info['temperature']),'.2f')
