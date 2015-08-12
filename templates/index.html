@@ -3,12 +3,25 @@
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<body>
+<title>BB's Smart Home</title>
+<h1> Welcome to BB's Smart Home </h1>
+{% if records %}
+<h2>Temperature: {{ records.cur_temperature}}°C</h2>
+<h2>Humidity: {{ records.cur_humidity}}%</h2>
+{% endif %}
+{% if records.timestamp_string %}
+<h2>Last Recorded Time: {{ records.timestamp_string }} GMT</h2>
+{% endif %}
+
+<h2>Temperature in last 24 hours</h2> 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <script type="text/javascript">
 $.get( "/data.csv", function( data ) {
   if(data)
-  	tempinfo = JSON.parse(data);
+    tempinfo = JSON.parse(data);
 console.log(tempinfo);
 temperature = [];
 timestamp = [];
@@ -28,11 +41,11 @@ for(i=0; i<tempinfo.length;i++){
 $(function () {
     $('#container').highcharts({
         title: {
-            text: 'Monthly Average Temperature',
+            text: 'Last 24 hrs Temperature',
             x: -20 //center
         },
         subtitle: {
-            text: 'Source: WorldClimate.com',
+            text: '@ BB\'s SmartHome',
             x: -20
         },
         xAxis: {
@@ -67,14 +80,5 @@ $(function () {
 
 </script>
 
-<body>
-<title>BB's Smart Home</title>
-<h1> Welcome to BB's Smart Home </h1>
-{% if records %}
-<h2>Temperature: {{ records.cur_temperature}}°C</h2>
-<h2>Humidity: {{ records.cur_humidity}}%</h2>
-{% endif %}
-{% if records.timestamp_string %}
-<h2>Last Recorded Time: {{ records.timestamp_string }} GMT</h2>
-{% endif %}
+
 </body>
