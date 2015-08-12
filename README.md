@@ -10,4 +10,4 @@ Throw out all the remotes of your appliances and your phone should act as a univ
 
 The options are countless and imagine if you can do all of these stuff from anywhere in the world. That is SmartHome for you
 
-
+NOTE: The code is messy as of now as this project is still in under construction stage.. :-)
