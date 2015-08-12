@@ -1,9 +1,75 @@
 <!doctype html>
 
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+$.get( "../data.csv", function( data ) {
+  if(data)
+  	tempinfo = data;
+  else 
+    tempinfo = []; 
+console.log(tempinfo);
+temperature = [];
+timestamp = [];
+humidity = [];
+for(i=0; i<tempinfo.length;i++){
+    if(tempinfo[i].temperature){
+     temperature.push(parseFloat(tempinfo[i].temperature.toFixed(7)));
+     timestamp.push(new Date(tempinfo[i].timestamp * 1000).getHours() + ':' + new Date(tempinfo[i].timestamp * 1000).getMinutes() + ':' + new Date(tempinfo[i].timestamp * 1000).getSeconds());
+    
+    humidity.push(parseFloat(tempinfo[i].humidity.toFixed(2)));
+    }
+       
+}
+
+            //console.log(temperature);
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Monthly Average Temperature',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com',
+            x: -20
+        },
+        xAxis: {
+            categories: timestamp
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Temparature (°C)', 
+            data: temperature
+        },{ name: 'Humidity (%)',
+            data: humidity }]
+    });
+});
+ });
+
+
+</script>
 
 <body>
-
-
 <title>BB's Smart Home</title>
 <h1> Welcome to BB's Smart Home </h1>
 {% if records %}
