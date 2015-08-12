@@ -16,7 +16,8 @@ humidity = [];
 for(i=0; i<tempinfo.length;i++){
     if(tempinfo[i].temperature){
      temperature.push(parseFloat(tempinfo[i].temperature.toFixed(7)));
-     timestamp.push(new Date(tempinfo[i].timestamp * 1000).getHours() + ':' + new Date(tempinfo[i].timestamp * 1000).getMinutes() + ':' + new Date(tempinfo[i].timestamp * 1000).getSeconds());
+     dateInfo = new Date(tempinfo[i].timestamp * 1000);
+     timestamp.push(dateInfo.getHours() + ':' + dateInfo.getMinutes());
     
     humidity.push(parseFloat(tempinfo[i].humidity.toFixed(2)));
     }
