@@ -81,6 +81,9 @@ class SmartHomeDB:
 		if record is not None:
 			record_info = dict(record)
 			print record_info
+			temp = record_info['temperature']
+			tempstr = '{0:.2f}'.format(temp)
+			print(tempstr)
 			# try:
 			# 	record_info['temperature'] = format(float(record_info['temperature']),'.2f')
 			# 	record_info['humidity'] = format(float(record_info['humidity']),'.2f')

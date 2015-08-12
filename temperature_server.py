@@ -16,8 +16,6 @@ def index():
 	if( 'timestamp' in records.keys() ):
 		ts = datetime.datetime.fromtimestamp(records['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
 		records['timestamp_string'] = ts
-	print(records)
-
 	return render_template('index.html',records=records)
 
 
