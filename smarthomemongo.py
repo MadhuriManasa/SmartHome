@@ -56,7 +56,7 @@ class SmartHomeDB:
 		self.cur_stats=self.db['smart_home_stats']
 
 	def getTemperaturePoints(self):
-		count = max(self.temperature_collection.count()-96,0)
+		count = max(self.temperature_collection.count()-48,0)
 		record = self.temperature_collection.find({},{'timestamp':1, 'temperature':1,'humidity':1,'device_name':1,'_id':0}).skip(count)
 		return list(record)
 
