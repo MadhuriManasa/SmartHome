@@ -6,6 +6,9 @@
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <script type="text/javascript">
+
+$(function () {
+
 $.get( "../data.csv", function( data ) {
   if(data)
   	tempinfo = data;
@@ -26,7 +29,6 @@ for(i=0; i<tempinfo.length;i++){
 }
 
             //console.log(temperature);
-$(function () {
     $('#container').highcharts({
         title: {
             text: 'Monthly Average Temperature',
