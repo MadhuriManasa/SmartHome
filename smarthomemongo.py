@@ -79,12 +79,13 @@ class SmartHomeDB:
 	def getCurrentStats(self,device_name):
 		record = self.cur_stats.find_one({"device_name":{"$eq":device_name}},{ 'timestamp':1, 'cur_temperature':1,'cur_humidity':1,'device_name':1,'_id':0})
 		if record is not None:
+			record_info = dict(record)
 			try:
-				record['temperature'] = format(float(record['temperature']),'.2f')
-				record['humidity'] = format(float(record['humidity']),'.2f')
+				record_info['temperature'] = format(float(record_info['temperature']),'.2f')
+				record_info['humidity'] = format(float(record_info['humidity']),'.2f')
 			except e:
 				print(e)
-			return dict(record)
+			return record_info
 		
 		return dict()
 
