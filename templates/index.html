@@ -8,11 +8,11 @@
 <title>BB's Smart Home</title>
 <h1> Welcome to BB's Smart Home </h1>
 {% if records %}
-<h2>Temperature: {{ records.cur_temperature}}°C</h2>
-<h2>Humidity: {{ records.cur_humidity}}%</h2>
+<h3>Temperature:</h3> <h2>{{ records.cur_temperature}}°C</h2>
+<h3>Humidity:</h3> <h2> {{ records.cur_humidity}}%</h2>
 {% endif %}
 {% if records.timestamp_string %}
-<h2>Last Recorded Time: {{ records.timestamp_string }} GMT</h2>
+<h3>Last Recorded Time:</h3> <h2> {{ records.timestamp_string }} GMT</h2>
 {% endif %}
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
