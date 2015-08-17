@@ -45,6 +45,12 @@ def get_data_csv():
 	records = smartDB.getTemperaturePoints()
 	return json.dumps(records)
 
+@app.route('/upload_test', methods=['POST'])
+def upload_test():
+	recordJson = reques.get_json()
+	smartDB.upload_collection()
+
+
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',debug=True)

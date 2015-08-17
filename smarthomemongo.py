@@ -54,6 +54,7 @@ class SmartHomeDB:
 		self.db = client.get_default_database()
 		self.temperature_collection = self.db['temperature']
 		self.cur_stats=self.db['smart_home_stats']
+		self.test_collection = self.db['test_collection']
 
 	def getTemperaturePoints(self):
 		count = max(self.temperature_collection.count()-48,0)
@@ -89,6 +90,10 @@ class SmartHomeDB:
 			return record_info
 		
 		return dict()
+
+	def upload_collection(self,records):
+		self.test_collection.update({},records,upsert=True)
+		
 
 
 def run_tests():
