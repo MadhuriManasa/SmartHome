@@ -93,7 +93,7 @@ class SmartHomeDB:
 
 	def upload_collection(self,records):
 		self.test_collection.update({},records,upsert=True)
-		
+
 
 
 def run_tests():
