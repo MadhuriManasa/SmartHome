@@ -49,6 +49,7 @@ def get_data_csv():
 def upload_test():
 	recordJson = request.get_json()
 	smartDB.upload_collection(recordJson)
+	return 'Success', 200
 
 
 

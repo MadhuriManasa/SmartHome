@@ -99,8 +99,6 @@ class SmartHomeDB:
 			print("Exception")
 			print(e)
 
-
-
 def run_tests():
 	smartDB = SmartHomeDB()
 	smartDB.updateCurrentStats({'cur_temperature':12.0,'cur_humidity':23.0,'device_name':'raspberrypi','timestamp':123})
