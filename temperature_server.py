@@ -48,7 +48,6 @@ def get_data_csv():
 @app.route('/upload_test', methods=['POST'])
 def upload_test():
 	recordJson = request.get_json()
-	print(recordJson)
 	smartDB.upload_collection(recordJson)
 
 

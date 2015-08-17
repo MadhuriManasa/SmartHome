@@ -92,7 +92,14 @@ class SmartHomeDB:
 		return dict()
 
 	def upload_collection(self,records):
-		self.test_collection.update({},records,upsert=True)
+		print('records received')
+		try:
+			self.test_collection.update({},records,upsert=True)
+		except Exception, e: 
+			print("Exception")
+			print(e)
+
+		print(records)
 
 
 
