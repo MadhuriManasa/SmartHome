@@ -94,7 +94,7 @@ class SmartHomeDB:
 	def upload_collection(self,records):
 		print('records received')
 		try:
-			self.test_collection.update({},records,upsert=True)
+			self.test_collection.insert(records)
 		except Exception, e: 
 			print("Exception")
 			print(e)
