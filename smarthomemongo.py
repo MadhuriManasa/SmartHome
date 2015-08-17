@@ -99,8 +99,6 @@ class SmartHomeDB:
 			print("Exception")
 			print(e)
 
-		print(records)
-
 
 
 def run_tests():
