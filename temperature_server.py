@@ -33,7 +33,7 @@ def update_stats():
 
 @app.route('/get_current_stats',methods=['GET'])
 def get_current_stats():
-	record = smartDB.getCurrentStats()
+	record = smartDB.getCurrentStats('raspberry')
 	return json.dumps(record)
 
 @app.route('/line_graph')
