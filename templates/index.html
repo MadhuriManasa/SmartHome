@@ -297,8 +297,8 @@ $(function () {
                                             cur_stat_info = JSON.parse(data);
                                             var temperaturePoint = temperatureChart.series[0].points[0];
                                             var humidPoint = humidChart.series[0].points[0];
-                                            temperaturePoint.update(cur_stat_info.cur_temperature.toFixed(2));
-                                            humidPoint.update(cur_stat_info.cur_humidity.toFixed(2));
+                                            temperaturePoint.update(Number(cur_stat_info.cur_temperature.toFixed(2));
+                                            humidPoint.update(Number(cur_stat_info.cur_humidity.toFixed(2));
 
                                     }
 
