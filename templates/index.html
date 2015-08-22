@@ -28,169 +28,309 @@
 </table>
 
 
-<div style="width: 600px; height: 200px; margin: 0 auto">
-    <div id="container-speed" style="width: 300px; height: 200px; float: left"></div>
-    <div id="container-rpm" style="width: 300px; height: 200px; float: left"></div>
-</div>
+<div style="width: 900px; height: 400px; margin: 0 auto">
+    
+     <div id="container-humid" style="min-width: 310px; max-width: 400px; height: 300px; float:left; "> </div>
 
+    <div id="container-temp" style="min-width: 310px; max-width: 400px; height: 300px; float: left; "></div>
+        
+    
+</div>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-<!-- Current Temperature Guage -->
+
+
+
+<!--- Cur Temperature guage -->
+
 <script type="text/javascript">
+
 
 $(function () {
 
-    var gaugeOptions = {
+    var temperatureChart = null;
+    var humidChart = null;
+
+
+    
+    var humid = {
 
         chart: {
-            type: 'solidgauge'
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
         },
 
-        title: null,
+        title: {
+            text: 'Humid'
+        },
 
         pane: {
-            center: ['50%', '85%'],
-            size: '140%',
             startAngle: -90,
             endAngle: 90,
-            background: {
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                innerRadius: '60%',
-                outerRadius: '100%',
-                shape: 'arc'
-            }
-        },
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%',
+                 endAngle: 120,
+                startAngle: -120
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '107%',
+                 endAngle: 120,
+                startAngle: -120,
 
-        tooltip: {
-            enabled: false
+            }, {
+                
+                endAngle: 120,
+                startAngle: -120,
+
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%',
+                 endAngle: 120,
+                startAngle: -120,
+                shape : 'arc'
+
+            }]
         },
 
         // the value axis
         yAxis: {
-            stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickPixelInterval: 400,
-            tickWidth: 0,
-            title: {
-                y: -70
-            },
+            min: 0,
+            max: 100,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
             labels: {
-                y: 16
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: '%'
+            },
+            plotBands: [{
+                from: -10,
+                to: 10,
+                color: '#33CCFF' // green
+            }, {
+                from: 10,
+                to: 22,
+                color: '#FFFF66' // yellow
+            }, {
+                from: 22,
+                to: 32,
+                color: '#FF9933' // red
+            },
+                       {
+                from: 32,
+                to: 45,
+                color: '#CC3300' // red
             }
+                       
+                       ]
         },
 
-        plotOptions: {
-            solidgauge: {
-                dataLabels: {
-                    y: 5,
-                    borderWidth: 0,
-                    useHTML: true
-                }
+        series: [{
+            name: 'Temperature',
+            data: [22],
+            tooltip: {
+                valueSuffix: ' C'
             }
-        }
+        }]
+
     };
+    
+    
+    var temperature = {
 
-    // The speed gauge
-    $('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
-        yAxis: {
-            min: 0,
-            max: 200,
-            title: {
-                text: 'Speed'
-            }
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false
         },
 
-        credits: {
-            enabled: false
+        title: {
+            text: 'Temperature'
+        },
+
+        pane: {
+            startAngle: -90,
+            endAngle: 90,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%',
+                 endAngle: 120,
+                startAngle: -120
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '107%',
+                 endAngle: 120,
+                startAngle: -120,
+
+            }, {
+                
+                endAngle: 120,
+                startAngle: -120,
+
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%',
+                 endAngle: 120,
+                startAngle: -120,
+                shape : 'arc'
+
+            }]
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 45,
+
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#666',
+
+            tickPixelInterval: 30,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 10,
+            tickColor: '#666',
+            labels: {
+                step: 2,
+                rotation: 'auto'
+            },
+            title: {
+                text: '°C'
+            },
+            plotBands: [{
+                from: -10,
+                to: 10,
+                color: '#33CCFF' // green
+            }, {
+                from: 10,
+                to: 22,
+                color: '#FFFF66' // yellow
+            }, {
+                from: 22,
+                to: 32,
+                color: '#FF9933' // red
+            },
+                       {
+                from: 32,
+                to: 45,
+                color: '#CC3300' // red
+            }
+                       
+                       ]
         },
 
         series: [{
-            name: 'Speed',
-            data: [80],
-            dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                       '<span style="font-size:12px;color:silver">km/h</span></div>'
-            },
+            name: 'Temperature',
+            data: [34],
             tooltip: {
-                valueSuffix: ' km/h'
+                valueSuffix: ' C'
             }
         }]
 
-    }));
-
-    // The RPM gauge
-    $('#container-rpm').highcharts(Highcharts.merge(gaugeOptions, {
-        yAxis: {
-            min: 0,
-            max: 5,
-            title: {
-                text: 'RPM'
-            }
-        },
-
-        series: [{
-            name: 'RPM',
-            data: [1],
-            dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-                       '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
-            },
-            tooltip: {
-                valueSuffix: ' revolutions/min'
-            }
-        }]
-
-    }));
-
-    // Bring life to the dials
+    };
+      
     setInterval(function () {
-        // Speed
-        var chart = $('#container-speed').highcharts(),
-            point,
-            newVal,
-            inc;
+        
+                            
+                    if( humidChart && temperatureChart ){
 
-        if (chart) {
-            point = chart.series[0].points[0];
-            inc = Math.round((Math.random() - 0.5) * 100);
-            newVal = point.y + inc;
+                            $.get( "http://bb-smart-home.herokuapp.com/data.csv", function( data ) {
+                                    
+                                    if(data){
+                                            cur_stat_info = JSON.parse(data);
+                                            var temperaturePoint = temperatureChart.series[0].points[0];
+                                            var humidPoint = humidChart.series[0].points[0];
+                                            temperaturePoint.update(cur_stat_info.cur_temperature);
+                                            humidPoint.update(cur_stat_info.cur_humidity);
 
-            if (newVal < 0 || newVal > 200) {
-                newVal = point.y - inc;
-            }
+                                    }
 
-            point.update(newVal);
-        }
+                            });
 
-        // RPM
-        chart = $('#container-rpm').highcharts();
-        if (chart) {
-            point = chart.series[0].points[0];
-            inc = Math.random() - 0.5;
-            newVal = point.y + inc;
+                    }
+                    
 
-            if (newVal < 0 || newVal > 5) {
-                newVal = point.y - inc;
-            }
+                }, 3000);
+    
+    
+    $('#container-humid').highcharts(humid, function(chart){
 
-            point.update(newVal);
-        }
-    }, 2000);
+        if (!chart.renderer.forExport) {
+                   
+                   humidChart = chart;
+           }
+    } );
+   
+    $('#container-temp').highcharts(temperature, function(chart){
 
-
+        if (!chart.renderer.forExport) {
+                   
+                   temperatureChart = chart;
+           }
+    });
 });
-
 </script>
-<!--  -->
+
+
+<!---    -->
+
 
 
 
@@ -214,8 +354,8 @@ for(i=0; i<tempinfo.length;i++){
        
 }
 
-            console.log(temperature);
 $(function () {
+    
     $('#container').highcharts({
         title: {
             text: 'Last 24 hrs Temperature',
