@@ -291,7 +291,7 @@ $(function () {
                             
                     if( humidChart && temperatureChart ){
 
-                            $.get( "http://bb-smart-home.herokuapp.com/data.csv", function( data ) {
+                            $.get( "http://bb-smart-home.herokuapp.com/get_current_stats", function( data ) {
                                     
                                     if(data){
                                             cur_stat_info = JSON.parse(data);
