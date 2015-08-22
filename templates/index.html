@@ -285,13 +285,11 @@ $(function () {
         }]
 
     };
-      
-    setInterval(function () {
-        
-                            
-                    if( humidChart && temperatureChart ){
 
-                            $.get( "http://bb-smart-home.herokuapp.com/get_current_stats", function( data ) {
+
+    function  loadDataAndUpdate(){
+
+        $.get( "http://bb-smart-home.herokuapp.com/get_current_stats", function( data ) {
                                     
                                     if(data){
                                             cur_stat_info = JSON.parse(data);
@@ -303,11 +301,21 @@ $(function () {
                                     }
 
                             });
+    }
 
-                    }
-                    
+    function setTimer(){
 
+         if( humidChart && temperatureChart ){
+                loadDataAndUpdate();
+                setInterval(function () {
+                            loadDataAndUpdate();
                 }, 60000);
+         }
+
+
+    }
+      
+   
     
     
     $('#container-humid').highcharts(humid, function(chart){
@@ -315,6 +323,7 @@ $(function () {
         if (!chart.renderer.forExport) {
                    
                    humidChart = chart;
+                   setTimer();
            }
     } );
    
@@ -323,6 +332,7 @@ $(function () {
         if (!chart.renderer.forExport) {
                    
                    temperatureChart = chart;
+                   setTimer();
            }
     });
 });
