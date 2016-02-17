@@ -5,7 +5,7 @@ Current Available Features:
 Real Time Temperature and Humidity Monitoring System : 
 http://bb-smart-home.herokuapp.com/
 
-![BB Smart Home](http://cl.ly/1B1p0T3W2H0Z)
+![BB Smart Home](https://app.box.com/bbsmarhome)
 
 I have a dream of making all the things connected at home and to be able to change the ambience based on the current environment. 
 To be able to control the A/c based on the current room temperature,
